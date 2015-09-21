@@ -1,0 +1,19 @@
+var GA = require('googleanalytics'),
+    config = {
+        &quot;user&quot;: &quot;①ユーザー名&quot;,
+        &quot;password&quot;: &quot;②パスワード&quot;
+    },
+    ga = new GA.GA(config);
+
+ga.login(function(err, token) {
+    var options = {
+        'ids': 'ga:③GAのビューID',
+        'start-date': '2014-10-01', //期間を指定
+        'end-date': '2014-10-09', //期間を指定
+        'metrics': 'ga:pageviews',
+    };
+
+    ga.get(options, function(err, entries) {
+        console.log(JSON.stringify(entries));
+    });
+});
